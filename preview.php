@@ -4,17 +4,19 @@ $api_url = "https://script.googleusercontent.com/macros/echo?user_content_key=DA
 $response = file_get_contents($api_url);
 $data = json_decode($response, true);
 
-// Retrieve fixture_id from the URL
-$fixture_id = isset($_GET['fixture_id']) ? $_GET['fixture_id'] : '';
+// Retrieve values from the URL
+$fixture_id = isset($_GET['id']) ? $_GET['id'] : '';
+$team_home = isset($_GET['tm']) ? urldecode($_GET['tm']) : '';
+$team_away = isset($_GET['vs']) ? urldecode($_GET['vs']) : '';
 
-// Filter the data based on the fixture_id
-$fixture = array_filter($data["data"]["output"], function ($item) use ($fixture_id) {
-    return $item['fixture_id'] == $fixture_id;
+// Filter the data based on the fixture_id and team names
+$filtered_data = array_filter($data["data"]["output"], function ($item) use ($fixture_id, $team_home, $team_away) {
+    return $item['fixture_id'] == $fixture_id && $item['teams_home_name'] == $team_home && $item['teams_away_name'] == $team_away;
 });
 
 // Output the information for the selected fixture
-if ($fixture) {
-    $fixture = reset($fixture); // Get the first (and only) item from the filtered array
+if ($filtered_data) {
+    $fixture = reset($filtered_data); // Get the first (and only) item from the filtered array
     ?>
 <!DOCTYPE html>
 <html lang="en">
