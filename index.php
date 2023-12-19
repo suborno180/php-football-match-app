@@ -21,8 +21,7 @@ $data = json_decode($response, true);
         </div>
     </div>
 
-    <div class="w-full p-10">
-        <div class="container max-w-[500px] mx-auto">
+
             <?php // Check if the "output" key exists in the data
             if (isset($data["data"]["output"])) {
                 $fixtures = $data["data"]["output"];
@@ -31,11 +30,11 @@ $data = json_decode($response, true);
                 for ($i = 1; $i < count($fixtures); $i++) {
                     $fixture = $fixtures[$i];
                     ?>
-                    <div>
-                        <a href="preview.php?fixture_id=<?php echo $fixture['fixture_id']; ?>&league_round=<?php echo urlencode($fixture['league_round']); ?>" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 p-2 border-y-[1px] hover:bg-blue-100">
-                            <div>
-                                <img src="https://cdn-icons-png.flaticon.com/512/77/77305.png" class="h-10" alt="">
-                            </div>
+                    <div class="px-4">
+                        <a href="preview.php?fixture_id=<?php echo $fixture['fixture_id']; ?>&league_round=<?php echo urlencode($fixture['league_round']); ?>" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 p-2 border-y-[1px] hover:bg-blue-100" style="border: 0.5px solid gray;border-left: none; border-right: none; ">
+                        <div style="width: 60px;">
+                            <img src="./images/ball-football-icon.svg" class="w-10 h-10 object-cover" alt="">
+                        </div>
                             <div>
                                 <?php
                                 // Extract time and date from the "fixture_date"
@@ -47,16 +46,12 @@ $data = json_decode($response, true);
                                 $currentYear = date('Y');
                                 $dynamicDate = "$dayMonth $currentYear";
                                 ?>
-                                <div><?php echo $time; ?></div>
-                                <div><?php echo $dynamicDate; ?></div>
+                                <h2 class="whitespace-nowrap text-[13px]"><?php echo $time; ?></h2>
+                                <h2 class="whitespace-nowrap text-[13px]"><?php echo $dynamicDate; ?></h2>
                             </div>
                             <div>
-                                <h1 class="font-bold"><?php echo isset($fixture['league_round']) ? $fixture['league_round'] : 'N/A'; ?></h1>
-                                <div class="text-gray-500">
-                                    <span><?php echo isset($fixture['teams_home_name']) ? $fixture['teams_home_name'] : 'N/A'; ?></span>
-                                    -
-                                    <span><?php echo isset($fixture['teams_away_name']) ? $fixture['teams_away_name'] : 'N/A'; ?></span>
-                                </div>
+                                <h1 class="line-clamp-1 font-bold text-[13px]"><?php echo isset($fixture['teams_home_name']) ? $fixture['teams_home_name'] : 'N/A'; ?> - <span><?php echo isset($fixture['teams_away_name']) ? $fixture['teams_away_name'] : 'N/A'; ?></h1>
+                                <h1 class="line-clamp-1 text-gray-500 text-[13px]"><?php echo isset($fixture['league_round']) ? $fixture['league_round'] : 'N/A'; ?></h1>
                             </div>
                         </a>
                     </div>
