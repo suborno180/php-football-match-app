@@ -7,6 +7,7 @@ $data = json_decode($response, true);
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,45 +26,46 @@ $data = json_decode($response, true);
     </div>
 
 
-            <?php // Check if the "output" key exists in the data
-            if (isset($data["data"]["output"])) {
-                $fixtures = $data["data"]["output"];
+    <?php // Check if the "output" key exists in the data
+    if (isset($data["data"]["output"])) {
+        $fixtures = $data["data"]["output"];
 
-                // Loop through each fixture, starting from the second item (index 1)
-                for ($i = 1; $i < count($fixtures); $i++) {
-                    $fixture = $fixtures[$i];
-                    ?>
-                    <div class="mx-auto container max-w-[700px] px-4">
-                        <a href="preview.php?id=<?php echo $fixture['fixture_id']; ?>&tm=<?php echo urlencode($fixture['teams_home_name']); ?>&vs=<?php echo urlencode($fixture['teams_away_name']); ?>" target="_blank" rel="noopener noreferrer" class="card">
-                        <div>
-                            <img src="./images/ball-football-icon.svg"  alt="">
-                        </div>
-                            <div class="time">
-                                <?php
-                                // Extract time and date from the "fixture_date"
-                                $fixtureTimestamp = strtotime($fixture['fixture_date']);
-                                $time = date('h:i A', $fixtureTimestamp);
-
-                                // Extract day and month and make it dynamic with the current year
-                                $dayMonth = date('d M', $fixtureTimestamp);
-                                $currentYear = date('Y');
-                                $dynamicDate = "$dayMonth $currentYear";
-                                ?>
-                                <h2 class="whitespace-nowrap"><?php echo $time; ?></h2>
-                                <h2 class="whitespace-nowrap "><?php echo $dynamicDate; ?></h2>
-                            </div>
-                            <div class="text">
-                                <h1 class="line-clamp-1 font-bold "><?php echo isset($fixture['teams_home_name']) ? $fixture['teams_home_name'] : 'N/A'; ?> - <span><?php echo isset($fixture['teams_away_name']) ? $fixture['teams_away_name'] : 'N/A'; ?></h1>
-                                <h2 class="line-clamp-1 text-gray-500 "><?php echo isset($fixture['league_round']) ? $fixture['league_round'] : 'N/A'; ?></h2>
-                            </div>
-                        </a>
+        // Loop through each fixture, starting from the second item (index 1)
+        for ($i = 1; $i < count($fixtures); $i++) {
+            $fixture = $fixtures[$i];
+    ?>
+            <div class="mx-auto container max-w-[700px] px-4">
+                <a href="preview.php?id=<?php echo $fixture['fixture_id']; ?>&tm=<?php echo urlencode($fixture['teams_home_name']); ?>&vs=<?php echo urlencode($fixture['teams_away_name']); ?>"  class="card">
+                    <div>
+                        <img src="./images/ball-football-icon.svg" alt="">
                     </div>
-                <?php
-                }
-            } else {
-                echo "No fixtures found in the data.";
-            } ?>
-        </div>
+                    <div class="time">
+                        <?php
+                        // Extract time and date from the "fixture_date"
+                        $fixtureTimestamp = strtotime($fixture['fixture_date']);
+                        $time = date('h:i A', $fixtureTimestamp);
+
+                        // Extract day and month and make it dynamic with the current year
+                        $dayMonth = date('d M', $fixtureTimestamp);
+                        $currentYear = date('Y');
+                        $dynamicDate = "$dayMonth $currentYear";
+                        ?>
+                        <h2 class="whitespace-nowrap"><?php echo $time; ?></h2>
+                        <h2 class="whitespace-nowrap "><?php echo $dynamicDate; ?></h2>
+                    </div>
+                    <div class="text">
+                        <h1 class="line-clamp-1 font-bold "><?php echo isset($fixture['teams_home_name']) ? $fixture['teams_home_name'] : 'N/A'; ?> - <span><?php echo isset($fixture['teams_away_name']) ? $fixture['teams_away_name'] : 'N/A'; ?></h1>
+                        <h2 class="line-clamp-1 text-gray-500 "><?php echo isset($fixture['league_round']) ? $fixture['league_round'] : 'N/A'; ?></h2>
+                    </div>
+                </a>
+            </div>
+    <?php
+        }
+    } else {
+        echo "No fixtures found in the data.";
+    } ?>
+    </div>
     </div>
 </body>
+
 </html>

@@ -17,59 +17,68 @@ $filtered_data = array_filter($data["data"]["output"], function ($item) use ($fi
 // Output the information for the selected fixture
 if ($filtered_data) {
     $fixture = reset($filtered_data); // Get the first (and only) item from the filtered array
-    ?>
-<!DOCTYPE html>
-<html lang="en">
+?>
+    <!DOCTYPE html>
+    <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $fixture['league_round']; ?></title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title><?php echo $fixture['league_round']; ?></title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    </head>
 
-<body class="bg-gray-100 p-4 lg:p-0">
-    <div class="container mx-auto mt-8">
-        <div class="mx-auto max-w-[500px] bg-white p-8 rounded-lg shadow-md mb-8">
-            <div class="mb-6">
-                <img src="<?php echo getValidImageUrl($fixture['respons_league_logo']); ?>" alt="League Logo" class="w-24 h-24 mx-auto mb-4">
-                <h2 class="text-2xl font-bold text-center text-blue-600"><?php echo $fixture['league_round']; ?></h2>
-                <p class="text-sm text-gray-600 text-center"><?php echo isset($fixture['response_league_name']) ? $fixture['response_league_name'] : 'N/A'; ?> - <?php echo isset($fixture['league_country']) ? $fixture['league_country'] : 'N/A'; ?></p>
+    <body class="bg-gray-100 p-4 lg:p-0">
+        <div class="container mx-auto mt-8">
+            <div class="mt-4 my-4">
+                <button onclick="goBack()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition-all duration-300 ease-in-out">Back</button>
             </div>
-
-            <div class="flex justify-between items-center mb-6">
-                <div class="text-center">
-                    <img src="<?php echo getValidImageUrl($fixture['teams_home_logo']); ?>" alt="Home Team Logo" class="w-16 h-16 mx-auto mb-2 rounded-full border border-blue-500 p-1">
-                    <p class="text-sm font-semibold"><?php echo $fixture['teams_home_name']; ?></p>
+            <div class="mx-auto max-w-[500px] bg-white p-8 rounded-lg shadow-md mb-8">
+                <div class="mb-6">
+                    <img src="<?php echo getValidImageUrl($fixture['respons_league_logo']); ?>" alt="League Logo" class="w-24 h-24 mx-auto mb-4">
+                    <h2 class="text-2xl font-bold text-center text-blue-600"><?php echo $fixture['league_round']; ?></h2>
+                    <p class="text-sm text-gray-600 text-center"><?php echo isset($fixture['response_league_name']) ? $fixture['response_league_name'] : 'N/A'; ?> - <?php echo isset($fixture['league_country']) ? $fixture['league_country'] : 'N/A'; ?></p>
                 </div>
-                <div>
-                    <span class="text-3xl font-bold text-gray-700">vs</span>
-                </div>
-                <div class="text-center">
-                    <img src="<?php echo getValidImageUrl($fixture['teams_away_logo']); ?>" alt="Away Team Logo" class="w-16 h-16 mx-auto mb-2 rounded-full border border-blue-500 p-1">
-                    <p class="text-sm font-semibold"><?php echo $fixture['teams_away_name']; ?></p>
-                </div>
-            </div>
 
-            <div class="text-center">
-                <p class="text-sm text-gray-600">Status: <?php echo $fixture['fixture_status_long']; ?></p>
-                <p class="text-xs text-gray-500"><?php echo formatUtcTimestamp($fixture['fixture_date']); ?></p>
-            </div>
-
-            <div class="mt-6">
-                <div class="flex justify-between items-center">
-                    <div>
-                        <img src="<?php echo getValidImageUrl($fixture['league_flag']); ?>" alt="Country Flag" class="w-6 h-6">
-                        <span class="text-xs text-gray-500"><?php echo $fixture['league_country']; ?></span>
+                <div class="flex justify-between items-center mb-6">
+                    <div class="text-center">
+                        <img src="<?php echo getValidImageUrl($fixture['teams_home_logo']); ?>" alt="Home Team Logo" class="w-16 h-16 mx-auto mb-2 rounded-full border border-blue-500 p-1">
+                        <p class="text-sm font-semibold"><?php echo $fixture['teams_home_name']; ?></p>
                     </div>
-                    <span class="text-xs text-gray-500">Venue: <?php echo $fixture['fixture_venue_city']; ?></span>
+                    <div>
+                        <span class="text-3xl font-bold text-gray-700">vs</span>
+                    </div>
+                    <div class="text-center">
+                        <img src="<?php echo getValidImageUrl($fixture['teams_away_logo']); ?>" alt="Away Team Logo" class="w-16 h-16 mx-auto mb-2 rounded-full border border-blue-500 p-1">
+                        <p class="text-sm font-semibold"><?php echo $fixture['teams_away_name']; ?></p>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <p class="text-sm text-gray-600">Status: <?php echo $fixture['fixture_status_long']; ?></p>
+                    <p class="text-xs text-gray-500"><?php echo formatUtcTimestamp($fixture['fixture_date']); ?></p>
+                </div>
+
+                <div class="mt-6">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <img src="<?php echo getValidImageUrl($fixture['league_flag']); ?>" alt="Country Flag" class="w-6 h-6">
+                            <span class="text-xs text-gray-500"><?php echo $fixture['league_country']; ?></span>
+                        </div>
+                        <span class="text-xs text-gray-500">Venue: <?php echo $fixture['fixture_venue_city']; ?></span>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</body>
+        <script>
+            // JavaScript function to go back
+            function goBack() {
+                window.history.back();
+            }
+        </script>
+    </body>
 
-</html>
+    </html>
 
 
 <?php
