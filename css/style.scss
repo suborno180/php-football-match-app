@@ -1,0 +1,24 @@
+.card{
+    display: flex;
+    align-items: center;
+    gap: 4;
+    border-bottom: 1px solid rgb(238 238 238);
+    padding: 4px 0;
+    &:hover{
+        background: rgba(0, 195, 255, 0.13);
+    }
+    img{
+        // width: 30px;
+        height: 30px;
+    }
+    .time{
+        margin-left: 10px;
+        margin-right: 10px;
+        width: 65px;
+        overflow: hidden;
+        font-size: 12px;
+    }
+    .text{
+        font-size: 12px;
+    }
+}

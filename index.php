@@ -12,7 +12,10 @@ $data = json_decode($response, true);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
     <title>Football Matches</title>
+    <link rel="stylesheet" href="./css/style.css">
 </head>
+
+
 <body>
     <div class="bg-gradient-to-r from-blue-500 to-purple-600 p-6 text-white">
         <div class="container mx-auto text-center">
@@ -31,11 +34,11 @@ $data = json_decode($response, true);
                     $fixture = $fixtures[$i];
                     ?>
                     <div class="mx-auto container max-w-[700px] px-4">
-                        <a href="preview.php?id=<?php echo $fixture['fixture_id']; ?>&tm=<?php echo urlencode($fixture['teams_home_name']); ?>&vs=<?php echo urlencode($fixture['teams_away_name']); ?>" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 p-2 border-y-[1px] hover:bg-blue-100" style="border: 0.5px solid gray;border-left: none; border-right: none; ">
-                        <div style="width: 40px;">
-                            <img src="./images/ball-football-icon.svg" class="w-10 h-10 object-cover" alt="">
+                        <a href="preview.php?id=<?php echo $fixture['fixture_id']; ?>&tm=<?php echo urlencode($fixture['teams_home_name']); ?>&vs=<?php echo urlencode($fixture['teams_away_name']); ?>" target="_blank" rel="noopener noreferrer" class="card">
+                        <div>
+                            <img src="./images/ball-football-icon.svg"  alt="">
                         </div>
-                            <div>
+                            <div class="time">
                                 <?php
                                 // Extract time and date from the "fixture_date"
                                 $fixtureTimestamp = strtotime($fixture['fixture_date']);
@@ -46,12 +49,12 @@ $data = json_decode($response, true);
                                 $currentYear = date('Y');
                                 $dynamicDate = "$dayMonth $currentYear";
                                 ?>
-                                <h2 class="whitespace-nowrap text-[13px]"><?php echo $time; ?></h2>
-                                <h2 class="whitespace-nowrap text-[13px]"><?php echo $dynamicDate; ?></h2>
+                                <h2 class="whitespace-nowrap"><?php echo $time; ?></h2>
+                                <h2 class="whitespace-nowrap "><?php echo $dynamicDate; ?></h2>
                             </div>
-                            <div>
-                                <h1 class="line-clamp-1 font-bold text-[13px]"><?php echo isset($fixture['teams_home_name']) ? $fixture['teams_home_name'] : 'N/A'; ?> - <span><?php echo isset($fixture['teams_away_name']) ? $fixture['teams_away_name'] : 'N/A'; ?></h1>
-                                <h1 class="line-clamp-1 text-gray-500 text-[13px]"><?php echo isset($fixture['league_round']) ? $fixture['league_round'] : 'N/A'; ?></h1>
+                            <div class="text">
+                                <h1 class="line-clamp-1 font-bold "><?php echo isset($fixture['teams_home_name']) ? $fixture['teams_home_name'] : 'N/A'; ?> - <span><?php echo isset($fixture['teams_away_name']) ? $fixture['teams_away_name'] : 'N/A'; ?></h1>
+                                <h2 class="line-clamp-1 text-gray-500 "><?php echo isset($fixture['league_round']) ? $fixture['league_round'] : 'N/A'; ?></h2>
                             </div>
                         </a>
                     </div>
