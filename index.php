@@ -32,7 +32,7 @@ $data = json_decode($response, true);
                     ?>
                     <div class="mx-auto container max-w-[700px] px-4">
                         <a href="preview.php?fixture_id=<?php echo $fixture['fixture_id']; ?>&league_round=<?php echo urlencode($fixture['league_round']); ?>" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 p-2 border-y-[1px] hover:bg-blue-100" style="border: 0.5px solid gray;border-left: none; border-right: none; ">
-                        <div style="width: 60px;">
+                        <div style="width: 40px;">
                             <img src="./images/ball-football-icon.svg" class="w-10 h-10 object-cover" alt="">
                         </div>
                             <div>
