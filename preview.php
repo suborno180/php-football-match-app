@@ -36,8 +36,8 @@ if ($filtered_data) {
             <div class="mx-auto max-w-[500px] bg-white p-8 rounded-lg shadow-md mb-8">
                 <div class="mb-6">
                     <img src="<?php echo getValidImageUrl($fixture['respons_league_logo']); ?>" alt="League Logo" class="w-24 h-24 mx-auto mb-4">
-                    <h2 class="text-2xl font-bold text-center text-blue-600"><?php echo $fixture['league_round']; ?></h2>
-                    <p class="text-sm text-gray-600 text-center"><?php echo isset($fixture['response_league_name']) ? $fixture['response_league_name'] : 'N/A'; ?> - <?php echo isset($fixture['league_country']) ? $fixture['league_country'] : 'N/A'; ?></p>
+                    <h1 class="text-2xl font-bold text-center text-blue-600"><?php echo isset($fixture['teams_home_name']) ? $fixture['teams_home_name'] : 'N/A'; ?> - <span><?php echo isset($fixture['teams_away_name']) ? $fixture['teams_away_name'] : 'N/A'; ?></h1>
+                    <p class="text-sm text-gray-600 text-center"><?php echo isset($fixture['league_round']) ? $fixture['league_round'] : 'N/A'; ?> - <?php echo isset($fixture['league_country']) ? $fixture['league_country'] : 'N/A'; ?></p>
                 </div>
 
                 <div class="flex justify-between items-center mb-6">

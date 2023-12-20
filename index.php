@@ -55,7 +55,7 @@ $data = json_decode($response, true);
                     </div>
                     <div class="text">
                         <h1 class="line-clamp-1 font-bold "><?php echo isset($fixture['teams_home_name']) ? $fixture['teams_home_name'] : 'N/A'; ?> - <span><?php echo isset($fixture['teams_away_name']) ? $fixture['teams_away_name'] : 'N/A'; ?></h1>
-                        <h2 class="line-clamp-1 text-gray-500 "><?php echo isset($fixture['league_round']) ? $fixture['league_round'] : 'N/A'; ?></h2>
+                        <h2 class="line-clamp-1 text-gray-500 "><?php echo isset($fixture['league_round']) ? $fixture['league_round'] : 'N/A'; ?> - <?php echo isset($fixture['league_country']) ? $fixture['league_country'] : 'N/A'; ?></h2>
                     </div>
                 </a>
             </div>
