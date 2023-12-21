@@ -33,9 +33,9 @@ $data = json_decode($response, true);
         // Loop through each fixture, starting from the second item (index 1)
         for ($i = 1; $i < count($fixtures); $i++) {
             $fixture = $fixtures[$i];
-    ?>
+            ?>
             <div class="mx-auto container max-w-[700px] px-4">
-                <a href="preview.php?id=<?php echo $fixture['fixture_id']; ?>&tm=<?php echo urlencode($fixture['teams_home_name']); ?>&vs=<?php echo urlencode($fixture['teams_away_name']); ?>"  class="card">
+                <a href="preview.php?id=<?php echo $fixture['fixture_id']; ?>&tm=<?php echo urlencode($fixture['teams_home_name']); ?>&vs=<?php echo urlencode($fixture['teams_away_name']); ?>" class="card">
                     <div>
                         <img src="./images/ball-football-icon.svg" alt="">
                     </div>
